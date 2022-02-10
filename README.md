@@ -1,4 +1,4 @@
-# Basic Sorting visualizer application
+# Basic sorting visualizer application
 This project is intended to provide a very simple way to visualize different (common) sorting algorithms.
 Additional alogrithms shall be added soon.
 
