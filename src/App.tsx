@@ -5,7 +5,7 @@ import SelectionSort from "./components/sorts/Selection/SelectionSort";
 import { ALGOS, SORTING_ALGORITHMS } from "./utils/constants";
 import HeaderButton from "./components/HeaderButton";
 import MergeSort from "./components/sorts/Merge/MergeSort";
-import QuickSort from "./components/sorts/QuickSort";
+import QuickSort from "./components/sorts/Quick/QuickSort";
 
 function App() {
   const [selectedSort, setSelectedSort] = useState<SORTING_ALGORITHMS>(
