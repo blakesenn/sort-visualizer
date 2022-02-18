@@ -3,23 +3,41 @@ import { GiBubbles } from "react-icons/gi";
 import { CgArrowsMergeAltH } from "react-icons/cg";
 import { MdOutlineShutterSpeed } from "react-icons/md";
 
-enum SORTING_ALGORITHMS {
+export enum SORTING_ALGORITHMS {
   Selection = "Selection",
   Bubble = "Bubble",
   Merge = "Merge",
   Quick = "Quick",
 }
 
+export enum AppRoutes {
+  BUBBLE = "/bubble",
+  SELECTION = "/selection",
+  MERGE = "/merge",
+  QUICK = "/quick",
+}
+
 export type AlgosProps = {
   label: SORTING_ALGORITHMS;
   icon: any;
+  href: AppRoutes;
 };
 
-const ALGOS: Array<AlgosProps> = [
-  { label: SORTING_ALGORITHMS.Bubble, icon: GiBubbles },
-  { label: SORTING_ALGORITHMS.Selection, icon: GrSelect },
-  { label: SORTING_ALGORITHMS.Merge, icon: CgArrowsMergeAltH },
-  { label: SORTING_ALGORITHMS.Quick, icon: MdOutlineShutterSpeed },
+export const NavButtons: Array<AlgosProps> = [
+  { label: SORTING_ALGORITHMS.Bubble, icon: GiBubbles, href: AppRoutes.BUBBLE },
+  {
+    label: SORTING_ALGORITHMS.Selection,
+    icon: GrSelect,
+    href: AppRoutes.SELECTION,
+  },
+  {
+    label: SORTING_ALGORITHMS.Merge,
+    icon: CgArrowsMergeAltH,
+    href: AppRoutes.MERGE,
+  },
+  {
+    label: SORTING_ALGORITHMS.Quick,
+    icon: MdOutlineShutterSpeed,
+    href: AppRoutes.QUICK,
+  },
 ];
-
-export { SORTING_ALGORITHMS, ALGOS };

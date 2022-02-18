@@ -17,12 +17,11 @@ function Item({ index, step, val, isComplete }: ItemProps) {
 
   return (
     <Flex
-      minH="40px"
-      minW="60px"
+      h="80px"
+      w="100%"
       justify="center"
-      h="100%"
+      align="center"
       mx="2"
-      w="full"
       bgColor={
         index >= step.sortedSoFar || isComplete
           ? "#57CC99"
@@ -38,6 +37,7 @@ function Item({ index, step, val, isComplete }: ItemProps) {
       p="4"
       color="white"
       rounded="md"
+      fontSize="xl"
       transition="all 1s ease-out"
     >
       {val}
@@ -50,7 +50,7 @@ type SimpleProps = {
 };
 
 function Simple({ algo }: SimpleProps) {
-  const [steps, setSteps] = useState(algo(generateData(10)));
+  const [steps, setSteps] = useState(algo(generateData(6)));
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
