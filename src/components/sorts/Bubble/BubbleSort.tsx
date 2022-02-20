@@ -10,6 +10,7 @@ import {
 import { SORTING_ALGORITHMS } from "../../../utils/constants";
 import { swap } from "../../../utils/helpers";
 import { Step } from "../../../utils/interfaces";
+import BaseContainer from "../../BaseContainer";
 import Overview from "../../visualizers/Overview";
 import Simple from "../../visualizers/Simple";
 
@@ -61,30 +62,32 @@ function bubbleSort(arr: Array<number>): Array<Step> {
 
 function BubbleSort() {
   return (
-    <Box>
-      <Text fontSize="2xl" mb="12px">
-        Bubble Sort
-      </Text>
-      <Tabs isLazy isFitted variant="enclosed">
-        <TabList mb="1em">
-          <Tab>Overview</Tab>
-          <Tab>Detail</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <Overview
-              sort={SORTING_ALGORITHMS.Bubble}
-              algo={bubbleSort}
-              speedDefault={100}
-              speedFactor={800}
-            />
-          </TabPanel>
-          <TabPanel>
-            <Simple algo={bubbleSort} />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </Box>
+    <BaseContainer>
+      <Box>
+        <Text fontSize="2xl" mb="12px">
+          Bubble Sort
+        </Text>
+        <Tabs isLazy isFitted variant="enclosed">
+          <TabList mb="1em">
+            <Tab>Overview</Tab>
+            <Tab>Detail</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Overview
+                sort={SORTING_ALGORITHMS.Bubble}
+                algo={bubbleSort}
+                speedDefault={100}
+                speedFactor={800}
+              />
+            </TabPanel>
+            <TabPanel>
+              <Simple algo={bubbleSort} />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
+    </BaseContainer>
   );
 }
 

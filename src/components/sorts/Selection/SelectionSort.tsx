@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { SORTING_ALGORITHMS } from "../../../utils/constants";
 import { Step } from "../../../utils/interfaces";
+import BaseContainer from "../../BaseContainer";
 import Overview from "../../visualizers/Overview";
 
 function swap(arr: Array<any>, newMinPos: number, oldMinPos: number) {
@@ -45,26 +46,28 @@ function selectionSort(arr: Array<any>): Array<Step> {
 
 function SelectionSort() {
   return (
-    <Box>
-      <Text fontSize="2xl" mb="12px">
-        Selection Sort
-      </Text>
-      <Tabs isLazy isFitted variant="enclosed">
-        <TabList mb="1em">
-          <Tab>Overview</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <Overview
-              sort={SORTING_ALGORITHMS.Selection}
-              algo={selectionSort}
-              speedDefault={800}
-              speedFactor={20000}
-            />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </Box>
+    <BaseContainer>
+      <Box>
+        <Text fontSize="2xl" mb="12px">
+          Selection Sort
+        </Text>
+        <Tabs isLazy isFitted variant="enclosed">
+          <TabList mb="1em">
+            <Tab>Overview</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Overview
+                sort={SORTING_ALGORITHMS.Selection}
+                algo={selectionSort}
+                speedDefault={800}
+                speedFactor={20000}
+              />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
+    </BaseContainer>
   );
 }
 

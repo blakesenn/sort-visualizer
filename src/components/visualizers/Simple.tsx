@@ -59,7 +59,7 @@ function Simple({ algo }: SimpleProps) {
         <Button
           onClick={() => {
             setCurrentStep(0);
-            setSteps(algo(generateData(10, 200)));
+            setSteps(algo(generateData(6)));
           }}
         >
           Generate data to sort

@@ -1,7 +1,12 @@
 import React from "react";
+import BaseContainer from "../../BaseContainer";
 
 function QuickSort() {
-  return <div>Coming Soon!</div>;
+  return (
+    <BaseContainer>
+      <div>Coming Soon!</div>
+    </BaseContainer>
+  );
 }
 
 export default QuickSort;
