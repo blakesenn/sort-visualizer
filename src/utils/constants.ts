@@ -1,7 +1,7 @@
-import { GrSelect } from "react-icons/gr";
 import { GiBubbles } from "react-icons/gi";
 import { CgArrowsMergeAltH } from "react-icons/cg";
 import { MdOutlineShutterSpeed } from "react-icons/md";
+import { AiOutlineSelect } from "react-icons/ai";
 
 export enum SORTING_ALGORITHMS {
   Selection = "Selection",
@@ -27,7 +27,7 @@ export const NavButtons: Array<AlgosProps> = [
   { label: SORTING_ALGORITHMS.Bubble, icon: GiBubbles, href: AppRoutes.BUBBLE },
   {
     label: SORTING_ALGORITHMS.Selection,
-    icon: GrSelect,
+    icon: AiOutlineSelect,
     href: AppRoutes.SELECTION,
   },
   {

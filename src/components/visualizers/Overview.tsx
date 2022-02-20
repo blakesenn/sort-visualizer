@@ -85,6 +85,7 @@ function Overview({ algo, sort, speedFactor, speedDefault }: OverViewProps) {
             handleStart();
           }}
           disabled={start}
+          color="black"
         >
           Start Sort
         </Button>

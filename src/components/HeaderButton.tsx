@@ -1,6 +1,8 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import { AlgosProps } from "../utils/constants";
 import { Link, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { ColorModeContext } from "../utils/contexts";
 
 type HeaderButtonProps = {
   button: AlgosProps;
@@ -8,6 +10,8 @@ type HeaderButtonProps = {
 
 function HeaderButton({ button }: HeaderButtonProps) {
   const location = useLocation();
+
+  const { isDarkMode } = useContext(ColorModeContext);
 
   const isActive = location.pathname === button.href;
   return (
@@ -20,7 +24,7 @@ function HeaderButton({ button }: HeaderButtonProps) {
         align="center"
         borderBottom={isActive ? "4px solid #4361ee" : "4px solid transparent"}
         disabled={isActive}
-        color={isActive ? "#4361ee" : "black"}
+        color={isActive ? "#4361ee" : isDarkMode ? "white" : "black"}
       >
         <Text fontWeight="medium" fontSize="lg" fontFamily="mono">
           {button.label}{" "}
