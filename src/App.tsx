@@ -10,7 +10,7 @@ import { ColorModeContext } from "./utils/contexts";
 import { useState } from "react";
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   return (
     <ColorModeContext.Provider

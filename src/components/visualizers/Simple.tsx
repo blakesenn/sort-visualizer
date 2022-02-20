@@ -55,7 +55,7 @@ function Simple({ algo }: SimpleProps) {
 
   return (
     <Box>
-      <ButtonGroup spacing={4}>
+      <ButtonGroup spacing={4} color="black">
         <Button
           onClick={() => {
             setCurrentStep(0);
