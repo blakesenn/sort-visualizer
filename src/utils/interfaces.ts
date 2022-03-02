@@ -1,9 +1,8 @@
 export interface Step {
-  step: number;
   arr: Array<any>;
-  swapLess: number;
-  swapGreater: number;
-  swapped: boolean;
-  isInitial: boolean;
-  sortedSoFar: number;
+  index1: number;
+  index2: number;
+  swapped?: boolean;
+  sortedSoFar?: number;
+  isInitial?: boolean;
 }

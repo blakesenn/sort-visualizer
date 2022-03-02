@@ -11,8 +11,8 @@ type ItemProps = {
 };
 
 function Item({ index, step, val, isComplete }: ItemProps) {
-  const isSwapLess = step.swapLess === index;
-  const isSwapGreater = step.swapGreater === index;
+  const isSwapLess = step.index1 === index;
+  const isSwapGreater = step.index2 === index;
   const isSelected = isSwapLess || isSwapGreater;
 
   return (

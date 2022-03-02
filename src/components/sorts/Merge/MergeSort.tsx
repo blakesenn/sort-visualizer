@@ -1,24 +1,17 @@
-import {
-  Box,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  Text,
-} from "@chakra-ui/react";
-import React from "react";
+import { Box, Text } from "@chakra-ui/react";
+import { SORTING_ALGORITHMS } from "../../../utils/constants";
 import { Step } from "../../../utils/interfaces";
 import BaseContainer from "../../BaseContainer";
+import Overview from "../../visualizers/Overview";
 
 function mergeSort(
   arr: Array<number>,
-  start: number,
-  end: number,
+  start: number = 0,
+  end: number = arr.length - 1,
   stepArr: Step[]
 ) {
   if (start < end) {
-    const mid = (start + end) / 2;
+    const mid = Math.floor((start + end) / 2);
     mergeSort(arr, start, mid, stepArr);
     mergeSort(arr, mid + 1, end, stepArr);
     merge(arr, start, mid, end, stepArr);
@@ -51,29 +44,26 @@ function merge(
 
   while (indexFirst < n1 && indexSecond < n2) {
     if (tempStart[indexFirst] <= tempEnd[indexSecond]) {
+      if (indexMerged !== indexFirst + start) {
+        stepArr.push({
+          index1: indexMerged,
+          index2: -1,
+          arr: [...arr],
+        });
+      }
       arr[indexMerged] = tempStart[indexFirst];
-      // stepArr.push({
-      //   step: 0,
-      //   arr: [...arr],
-      //   swapLess: indexFirst,
-      //   swapGreater: indexSecond,
-      //   swapped: true,
-      //   isInitial: false,
-      //   sortedSoFar: arr.length,
-      // });
 
       indexFirst++;
     } else {
+      if (indexMerged !== indexSecond + mid + 1) {
+        stepArr.push({
+          index1: indexMerged,
+          index2: -1,
+          arr: [...arr],
+        });
+      }
       arr[indexMerged] = tempEnd[indexSecond];
-      // stepArr.push({
-      //   step: 0,
-      //   arr: [...arr],
-      //   swapLess: indexFirst,
-      //   swapGreater: indexSecond,
-      //   swapped: false,
-      //   isInitial: false,
-      //   sortedSoFar: arr.length,
-      // });
+
       indexSecond++;
     }
     indexMerged++;
@@ -82,57 +72,55 @@ function merge(
   // copy remaining elems
 
   while (indexFirst < n1) {
+    if (indexFirst + start !== indexMerged) {
+      stepArr.push({
+        index1: indexMerged,
+        index2: -1,
+        arr: [...arr],
+      });
+    }
     arr[indexMerged] = tempStart[indexFirst];
-    // stepArr.push({
-    //   step: 0,
-    //   arr: [...arr],
-    //   swapLess: indexFirst,
-    //   swapGreater: indexSecond,
-    //   swapped: false,
-    //   isInitial: false,
-    //   sortedSoFar: arr.length,
-    // });
+
     indexFirst++;
     indexMerged++;
   }
 
   while (indexSecond < n2) {
+    if (indexMerged !== indexSecond + mid + 1) {
+      stepArr.push({
+        index1: indexMerged,
+        index2: -1,
+        arr: [...arr],
+      });
+    }
     arr[indexMerged] = tempEnd[indexSecond];
-    // stepArr.push({
-    //   step: 0,
-    //   arr: [...arr],
-    //   swapLess: indexFirst,
-    //   swapGreater: indexSecond,
-    //   swapped: false,
-    //   isInitial: false,
-    //   sortedSoFar: arr.length,
-    // });
+
     indexSecond++;
     indexMerged++;
   }
 }
 
 export const mergeSteps = (arr: number[], start: number, end: number) => {
-  const mergeStepsArr: Step[] = [];
-  mergeSort(arr, start, end, mergeStepsArr);
+  const steps: Step[] = [];
+  mergeSort(arr, start, end, steps);
+  steps.push({ index1: null, index2: null, arr: [...arr] });
+  console.log(arr);
+  return steps;
 };
 
 function MergeSort() {
   return (
     <BaseContainer>
       <Box>
-        <Text fontSize="2xl" mb="12px">
-          Merge Sort (COMING SOON!)
+        <Text fontSize="2xl" mb="22px">
+          Merge Sort
         </Text>
-        <Tabs isLazy isFitted variant="enclosed">
-          <TabList mb="1em">
-            <Tab>Overview</Tab>
-            <Tab>Detail</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel></TabPanel>
-          </TabPanels>
-        </Tabs>
+        <Overview
+          algo={mergeSteps}
+          sort={SORTING_ALGORITHMS.Merge}
+          speedDefault={800}
+          speedFactor={20000}
+        />
       </Box>
     </BaseContainer>
   );

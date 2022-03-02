@@ -18,13 +18,14 @@ function Item({
   showVal,
   itemIsSorted,
 }: ItemProps) {
-  const isSwapLess = step.swapLess === index;
-  const isSwapGreater = step.swapGreater === index;
+  const isSwapLess = step.index1 === index;
+  const isSwapGreater = step.index2 === index;
   const isSelected = isSwapLess || isSwapGreater;
 
   return (
     <Flex
       mx="0.5"
+      minW="4px"
       bgColor={
         itemIsSorted || isComplete
           ? "#57CC99"

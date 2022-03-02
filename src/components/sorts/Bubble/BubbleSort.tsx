@@ -15,29 +15,25 @@ import Overview from "../../visualizers/Overview";
 import Simple from "../../visualizers/Simple";
 
 function bubbleSort(arr: Array<number>): Array<Step> {
-  let st = 1;
-  const sortSteps = [];
+  const sortSteps: Step[] = [];
   let sortedSoFar = arr.length;
   let arrCopy = [...arr];
   for (let index = 0; index < arr.length - 1; index++) {
     for (let j = 0; j < arr.length - index - 1; j++) {
       const isSwap = arr[j] > arr[j + 1];
       sortSteps.push({
-        step: st,
         arr: arrCopy,
-        swapLess: j + 1,
-        swapGreater: j,
+        index1: j + 1,
+        index2: j,
         swapped: false,
         isInitial: true,
         sortedSoFar: sortedSoFar,
       });
-      st++;
       if (isSwap) {
         sortSteps.push({
-          step: st,
           arr: arrCopy,
-          swapLess: j + 1,
-          swapGreater: j,
+          index1: j + 1,
+          index2: j,
           swapped: false,
           isInitial: false,
           sortedSoFar: sortedSoFar,
@@ -45,10 +41,9 @@ function bubbleSort(arr: Array<number>): Array<Step> {
         swap(arr, j + 1, j);
         arrCopy = [...arr];
         sortSteps.push({
-          step: st,
           arr: arrCopy,
-          swapLess: j,
-          swapGreater: j + 1,
+          index1: j,
+          index2: j + 1,
           swapped: true,
           isInitial: false,
           sortedSoFar: sortedSoFar,

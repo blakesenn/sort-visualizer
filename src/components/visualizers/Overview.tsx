@@ -16,7 +16,7 @@ import { Step } from "../../utils/interfaces";
 import Item from "../OverviewItem";
 
 type OverViewProps = {
-  algo: (data: Array<number>) => Array<Step>;
+  algo: (data: Array<number>, start?: number, end?: number) => Array<Step>;
   sort: SORTING_ALGORITHMS;
   speedFactor: number;
   speedDefault: number;

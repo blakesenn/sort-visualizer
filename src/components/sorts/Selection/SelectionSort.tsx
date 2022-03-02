@@ -1,12 +1,4 @@
-import {
-  Box,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { SORTING_ALGORITHMS } from "../../../utils/constants";
 import { Step } from "../../../utils/interfaces";
 import BaseContainer from "../../BaseContainer";
@@ -32,15 +24,18 @@ function selectionSort(arr: Array<any>): Array<Step> {
     sortSteps.push({
       step: index + 1,
       arr: [...arr],
-      swapLess: currentMinIndex,
-      swapGreater: index,
+      index1: currentMinIndex,
+      index2: index,
       swapped: index !== currentMinIndex,
-      isInitial: false,
       sortedSoFar: sortedSoFar,
     });
     swap(arr, currentMinIndex, index);
     sortedSoFar++;
   }
+  // final sorted
+  sortSteps.push({
+    arr: [...arr],
+  });
   return sortSteps;
 }
 
@@ -48,24 +43,16 @@ function SelectionSort() {
   return (
     <BaseContainer>
       <Box>
-        <Text fontSize="2xl" mb="12px">
+        <Text fontSize="2xl" mb="22px">
           Selection Sort
         </Text>
-        <Tabs isLazy isFitted variant="enclosed">
-          <TabList mb="1em">
-            <Tab>Overview</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <Overview
-                sort={SORTING_ALGORITHMS.Selection}
-                algo={selectionSort}
-                speedDefault={800}
-                speedFactor={20000}
-              />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+
+        <Overview
+          sort={SORTING_ALGORITHMS.Selection}
+          algo={selectionSort}
+          speedDefault={800}
+          speedFactor={20000}
+        />
       </Box>
     </BaseContainer>
   );
