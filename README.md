@@ -2,6 +2,10 @@
 This project is intended to provide a very simple way to visualize different (common) sorting algorithms.
 Additional alogrithms shall be added soon.
 
+# View application
+[https://blakesenn.github.io/sort-visualizer](https://blakesenn.github.io/sort-visualizer)
+
+
 
 In the project directory, you can run:
 ### `yarn start`
