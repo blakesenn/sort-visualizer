@@ -10,12 +10,11 @@ export enum SORTING_ALGORITHMS {
   Quick = "Quick",
 }
 
-// adding '/sorting-visualizer' so this works correctly with github pages
 export enum AppRoutes {
-  BUBBLE = "/sorting-visualizer/bubble",
-  SELECTION = "/sorting-visualizer/selection",
-  MERGE = "/sorting-visualizer/merge",
-  QUICK = "/sorting-visualizer/quick",
+  BUBBLE = "/bubble",
+  SELECTION = "/selection",
+  MERGE = "/merge",
+  QUICK = "/quick",
 }
 
 export type AlgosProps = {

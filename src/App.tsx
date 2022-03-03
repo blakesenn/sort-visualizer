@@ -5,13 +5,14 @@ import {
   MergeSort,
   QuickSort,
 } from "./components/sorts";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+// need to use HashRouter to work with github pages
+import { Route, Routes, Navigate, HashRouter } from "react-router-dom";
 import { AppRoutes } from "./utils/constants";
 
 function App() {
   return (
     <Box minH="100vh" h="100%">
-      <BrowserRouter>
+      <HashRouter basename="/">
         <Routes>
           <Route path={AppRoutes.BUBBLE} element={<BubbleSort />} />
           <Route path={AppRoutes.SELECTION} element={<SelectionSort />} />
@@ -22,7 +23,7 @@ function App() {
             element={<Navigate replace to={AppRoutes.BUBBLE} />}
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </Box>
   );
 }
