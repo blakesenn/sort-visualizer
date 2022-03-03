@@ -29,7 +29,7 @@ function Item({
       bgColor={
         itemIsSorted || isComplete
           ? "#57CC99"
-          : isSelected && (step.swapped || step.isInitial)
+          : isSelected && step.swapped
           ? "red.600"
           : isSelected
           ? "green"

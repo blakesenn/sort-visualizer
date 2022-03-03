@@ -13,7 +13,10 @@ import { Step } from "../../../utils/interfaces";
 import BaseContainer from "../../BaseContainer";
 import { Overview, Simple } from "../../visualizers";
 
-function bubbleSort(arr: Array<number>): Array<Step> {
+function bubbleSort(
+  arr: Array<number>,
+  isSimple: boolean = false
+): Array<Step> {
   const sortSteps: Step[] = [];
   let sortedSoFar = arr.length;
   let arrCopy = [...arr];
@@ -29,14 +32,16 @@ function bubbleSort(arr: Array<number>): Array<Step> {
         sortedSoFar: sortedSoFar,
       });
       if (isSwap) {
-        sortSteps.push({
-          arr: arrCopy,
-          index1: j + 1,
-          index2: j,
-          swapped: false,
-          isInitial: false,
-          sortedSoFar: sortedSoFar,
-        });
+        if (isSimple) {
+          sortSteps.push({
+            arr: arrCopy,
+            index1: j + 1,
+            index2: j,
+            swapped: false,
+            isInitial: false,
+            sortedSoFar: sortedSoFar,
+          });
+        }
         swap(arr, j + 1, j);
         arrCopy = [...arr];
         sortSteps.push({
@@ -47,6 +52,16 @@ function bubbleSort(arr: Array<number>): Array<Step> {
           isInitial: false,
           sortedSoFar: sortedSoFar,
         });
+        if (!isSimple) {
+          sortSteps.push({
+            arr: arrCopy,
+            index1: j,
+            index2: j + 1,
+            swapped: false,
+            isInitial: false,
+            sortedSoFar: sortedSoFar,
+          });
+        }
       }
     }
     sortedSoFar--;
@@ -71,8 +86,8 @@ export function BubbleSort() {
               <Overview
                 sort={SORTING_ALGORITHMS.Bubble}
                 algo={bubbleSort}
-                speedDefault={100}
-                speedFactor={800}
+                speedDefault={400}
+                speedFactor={2000}
               />
             </TabPanel>
             <TabPanel>

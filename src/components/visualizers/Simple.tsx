@@ -46,11 +46,11 @@ function Item({ index, step, val, isComplete }: ItemProps) {
 }
 
 type SimpleProps = {
-  algo: (data: Array<number>) => Array<Step>;
+  algo: (data: Array<number>, isSimple: boolean) => Array<Step>;
 };
 
 export function Simple({ algo }: SimpleProps) {
-  const [steps, setSteps] = useState(algo(generateData(6)));
+  const [steps, setSteps] = useState(algo(generateData(6), true));
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
@@ -59,7 +59,7 @@ export function Simple({ algo }: SimpleProps) {
         <Button
           onClick={() => {
             setCurrentStep(0);
-            setSteps(algo(generateData(6)));
+            setSteps(algo(generateData(6), true));
           }}
         >
           Generate data to sort
