@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { SORTING_ALGORITHMS } from "../../../utils/constants";
 import { Step } from "../../../utils/interfaces";
 import BaseContainer from "../../BaseContainer";
-import Overview from "../../visualizers/Overview";
+import { Overview } from "../../visualizers";
 
 function swap(arr: Array<any>, newMinPos: number, oldMinPos: number) {
   const oldMinVal = arr[oldMinPos];
@@ -39,7 +39,7 @@ function selectionSort(arr: Array<any>): Array<Step> {
   return sortSteps;
 }
 
-function SelectionSort() {
+export function SelectionSort() {
   return (
     <BaseContainer>
       <Box>
@@ -57,5 +57,3 @@ function SelectionSort() {
     </BaseContainer>
   );
 }
-
-export default SelectionSort;

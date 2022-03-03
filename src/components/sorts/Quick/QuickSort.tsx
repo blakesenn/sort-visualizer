@@ -1,12 +1,10 @@
-import React from "react";
+import { Text } from "@chakra-ui/react";
 import BaseContainer from "../../BaseContainer";
 
-function QuickSort() {
+export function QuickSort() {
   return (
     <BaseContainer>
-      <div>Coming Soon!</div>
+      <Text fontSize="2xl">Coming Soon!</Text>
     </BaseContainer>
   );
 }
-
-export default QuickSort;

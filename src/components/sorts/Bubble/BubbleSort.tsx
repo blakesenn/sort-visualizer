@@ -11,8 +11,7 @@ import { SORTING_ALGORITHMS } from "../../../utils/constants";
 import { swap } from "../../../utils/helpers";
 import { Step } from "../../../utils/interfaces";
 import BaseContainer from "../../BaseContainer";
-import Overview from "../../visualizers/Overview";
-import Simple from "../../visualizers/Simple";
+import { Overview, Simple } from "../../visualizers";
 
 function bubbleSort(arr: Array<number>): Array<Step> {
   const sortSteps: Step[] = [];
@@ -55,7 +54,7 @@ function bubbleSort(arr: Array<number>): Array<Step> {
   return sortSteps;
 }
 
-function BubbleSort() {
+export function BubbleSort() {
   return (
     <BaseContainer>
       <Box>
@@ -85,5 +84,3 @@ function BubbleSort() {
     </BaseContainer>
   );
 }
-
-export default BubbleSort;

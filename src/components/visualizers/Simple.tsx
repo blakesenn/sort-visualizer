@@ -1,5 +1,5 @@
 import { Box, Button, ButtonGroup, Flex } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { generateData } from "../../utils/helpers";
 import { Step } from "../../utils/interfaces";
 
@@ -49,7 +49,7 @@ type SimpleProps = {
   algo: (data: Array<number>) => Array<Step>;
 };
 
-function Simple({ algo }: SimpleProps) {
+export function Simple({ algo }: SimpleProps) {
   const [steps, setSteps] = useState(algo(generateData(6)));
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -99,5 +99,3 @@ function Simple({ algo }: SimpleProps) {
     </Box>
   );
 }
-
-export default Simple;

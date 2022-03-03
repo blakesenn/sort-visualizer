@@ -1,8 +1,8 @@
+import BaseContainer from "../../BaseContainer";
 import { Box, Text } from "@chakra-ui/react";
 import { SORTING_ALGORITHMS } from "../../../utils/constants";
 import { Step } from "../../../utils/interfaces";
-import BaseContainer from "../../BaseContainer";
-import Overview from "../../visualizers/Overview";
+import { Overview } from "../../visualizers";
 
 function mergeSort(
   arr: Array<number>,
@@ -25,16 +25,16 @@ function merge(
   end: number,
   stepArr: Step[]
 ) {
-  const n1 = mid - start + 1;
-  const n2 = end - mid;
+  const size1 = mid - start + 1;
+  const size2 = end - mid;
 
-  const tempStart = new Array(n1);
-  const tempEnd = new Array(n2);
+  const tempStart = new Array(size1);
+  const tempEnd = new Array(size2);
 
-  for (let i = 0; i < n1; i++) {
+  for (let i = 0; i < size1; i++) {
     tempStart[i] = arr[start + i];
   }
-  for (let j = 0; j < n2; j++) {
+  for (let j = 0; j < size2; j++) {
     tempEnd[j] = arr[mid + 1 + j];
   }
 
@@ -42,7 +42,7 @@ function merge(
   let indexSecond = 0;
   let indexMerged = start;
 
-  while (indexFirst < n1 && indexSecond < n2) {
+  while (indexFirst < size1 && indexSecond < size2) {
     if (tempStart[indexFirst] <= tempEnd[indexSecond]) {
       if (indexMerged !== indexFirst + start) {
         stepArr.push({
@@ -71,11 +71,10 @@ function merge(
 
   // copy remaining elems
 
-  while (indexFirst < n1) {
+  while (indexFirst < size1) {
     if (indexFirst + start !== indexMerged) {
       stepArr.push({
         index1: indexMerged,
-        index2: -1,
         arr: [...arr],
       });
     }
@@ -85,11 +84,10 @@ function merge(
     indexMerged++;
   }
 
-  while (indexSecond < n2) {
+  while (indexSecond < size2) {
     if (indexMerged !== indexSecond + mid + 1) {
       stepArr.push({
         index1: indexMerged,
-        index2: -1,
         arr: [...arr],
       });
     }
@@ -103,12 +101,11 @@ function merge(
 export const mergeSteps = (arr: number[], start: number, end: number) => {
   const steps: Step[] = [];
   mergeSort(arr, start, end, steps);
-  steps.push({ index1: null, index2: null, arr: [...arr] });
-  console.log(arr);
+  steps.push({ arr: [...arr] });
   return steps;
 };
 
-function MergeSort() {
+export function MergeSort() {
   return (
     <BaseContainer>
       <Box>
@@ -125,5 +122,3 @@ function MergeSort() {
     </BaseContainer>
   );
 }
-
-export default MergeSort;

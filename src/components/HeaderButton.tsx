@@ -6,9 +6,10 @@ import { ColorModeContext } from "../utils/contexts";
 
 type HeaderButtonProps = {
   button: AlgosProps;
+  isMobile?: boolean;
 };
 
-function HeaderButton({ button }: HeaderButtonProps) {
+function HeaderButton({ button, isMobile = false }: HeaderButtonProps) {
   const location = useLocation();
 
   const { isDarkMode } = useContext(ColorModeContext);
@@ -19,11 +20,18 @@ function HeaderButton({ button }: HeaderButtonProps) {
       <Flex
         as="button"
         h="100%"
-        w="120px"
-        justify={"center"}
+        w={isMobile ? "100%" : "120px"}
+        justify="center"
         align="center"
-        borderBottom={isActive ? "4px solid #4361ee" : "4px solid transparent"}
+        borderBottom={
+          isMobile
+            ? null
+            : isActive
+            ? "4px solid #4361ee"
+            : "4px solid transparent"
+        }
         disabled={isActive}
+        _hover={{ color: "#4361ee" }}
         color={isActive ? "#4361ee" : isDarkMode ? "white" : "black"}
       >
         <Text fontWeight="medium" fontSize="lg" fontFamily="mono">

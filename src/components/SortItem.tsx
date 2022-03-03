@@ -40,7 +40,7 @@ function Item({
       align="flex-end"
       justify="center"
       borderBottomRadius="xl"
-      transition="height 0.4s ease-out"
+      transition="height 0.2s ease-out"
     >
       {showVal && <Text color="white">{val}</Text>}
     </Flex>

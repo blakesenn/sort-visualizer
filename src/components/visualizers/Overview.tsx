@@ -2,18 +2,19 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Slider,
   SliderFilledTrack,
   SliderMark,
   SliderThumb,
   SliderTrack,
+  Stack,
+  useBreakpointValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SORTING_ALGORITHMS } from "../../utils/constants";
 import { generateData } from "../../utils/helpers";
 import { Step } from "../../utils/interfaces";
-import Item from "../OverviewItem";
+import Item from "../SortItem";
 
 type OverViewProps = {
   algo: (data: Array<number>, start?: number, end?: number) => Array<Step>;
@@ -22,19 +23,32 @@ type OverViewProps = {
   speedDefault: number;
 };
 
-function Overview({ algo, sort, speedFactor, speedDefault }: OverViewProps) {
+export function Overview({
+  algo,
+  sort,
+  speedFactor,
+  speedDefault,
+}: OverViewProps) {
   const [numElements, setNumElements] = useState(20);
   const [steps, setSteps] = useState(algo(generateData(20, 200)));
   const [currentStep, setCurrentStep] = useState(0);
   const [start, setStart] = useState(false);
   const [speed, setSpeed] = useState(speedDefault);
+  const timerRef = useRef<ReturnType<typeof setInterval>>(null);
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const maxElements = useBreakpointValue({
+    base: 30,
+    md: 80,
+    lg: 100,
+    xl: 140,
+  });
 
   const handleStart = () => {
     let st = 0;
     setCurrentStep(st);
-    const interval = setInterval(() => {
+    timerRef.current = setInterval(() => {
       if (st === steps.length - 1) {
-        clearInterval(interval);
+        clearInterval(timerRef.current);
         setStart(false);
       } else {
         setCurrentStep(st + 1);
@@ -43,15 +57,25 @@ function Overview({ algo, sort, speedFactor, speedDefault }: OverViewProps) {
     }, speed);
   };
 
+  useEffect(() => {
+    return () => clearInterval(timerRef.current);
+  }, []);
+
   return (
     <Box>
-      <HStack spacing="6">
+      <Stack
+        direction={["column", null, "row"]}
+        spacing="6"
+        display="flex"
+        align={[null, null, "center"]}
+      >
         <Box>
           <Slider
             defaultValue={20}
             min={20}
-            max={140}
-            w="xs"
+            max={maxElements}
+            w="full"
+            minW={[null, null, "xs"]}
             isDisabled={start}
             onChange={(val) => {
               setSpeed(speedFactor / val);
@@ -84,14 +108,15 @@ function Overview({ algo, sort, speedFactor, speedDefault }: OverViewProps) {
             setStart(true);
             handleStart();
           }}
-          disabled={start}
+          isLoading={start}
+          loadingText="Sorting"
           color="black"
         >
           Start Sort
         </Button>
-      </HStack>
-      <Flex pt="22px" minH={`${Math.max(...steps[0].arr) * 3}px`} pb="180px">
-        {steps[currentStep].arr.map((val: number, index: number) => {
+      </Stack>
+      <Flex py="22px" minH={`${Math.max(...steps[0].arr) * 2.8}px`}>
+        {steps[currentStep].arr.map((val, index) => {
           const step = steps[currentStep];
           return (
             <Item
@@ -105,7 +130,7 @@ function Overview({ algo, sort, speedFactor, speedDefault }: OverViewProps) {
               val={val}
               step={steps[currentStep]}
               isComplete={currentStep === steps.length - 1}
-              showVal={steps[0].arr.length <= 30}
+              showVal={!isMobile && steps[0].arr.length <= 30}
             />
           );
         })}
@@ -113,5 +138,3 @@ function Overview({ algo, sort, speedFactor, speedDefault }: OverViewProps) {
     </Box>
   );
 }
-
-export default Overview;
