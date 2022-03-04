@@ -22,7 +22,7 @@ const BaseContainer = ({ children }: { children: ReactNode }) => {
           marginLeft="auto"
           marginRight="auto"
           pt={["72px", null, "100px"]}
-          px={["22px", "30px", null, "50px"]}
+          px={["30px", "30px", null, "50px"]}
           color={isDarkMode ? "white" : "black"}
         >
           {children}
