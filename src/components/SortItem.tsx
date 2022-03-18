@@ -21,6 +21,7 @@ function Item({
   const isSwapLess = step.index1 === index;
   const isSwapGreater = step.index2 === index;
   const isSelected = isSwapLess || isSwapGreater;
+  const isPivot = step.pivotIndex === index;
 
   return (
     <Flex
@@ -33,6 +34,8 @@ function Item({
           ? "red.600"
           : isSelected
           ? "green"
+          : isPivot
+          ? "orange"
           : "indigo"
       }
       h={`${val * 2.5}px`}
